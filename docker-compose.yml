@@ -1,0 +1,15 @@
+services:
+  euvlab:
+    build: .
+    volumes:
+      - .:/app
+      - ./data:/app/data
+    working_dir: /app
+    command: bash -c "pytest -q && python experiments/run_all.py"
+  jupyter:
+    build: .
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/app
+    command: bash -c "pip install jupyter -q && jupyter notebook --ip=0.0.0.0 --allow-root --no-browser"

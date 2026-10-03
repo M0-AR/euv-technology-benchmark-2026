@@ -1,0 +1,20 @@
+{
+  "reachable": {
+    "asml_euv": {
+      "http": 200,
+      "bytes_peek": 1988,
+      "ok": true
+    },
+    "rwth_tos": {
+      "http": 200,
+      "bytes_peek": 1999,
+      "ok": true
+    },
+    "openalex_euv": {
+      "http": 200,
+      "bytes_peek": 2000,
+      "ok": true
+    }
+  },
+  "notes": "best-effort live existence checks 2026-10-03"
+}

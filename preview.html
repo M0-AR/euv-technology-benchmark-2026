@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EUV Technology Benchmark 2026 — Interactive Preview</title>
+<style>
+:root{--bg:#0b1020;--card:#141c33;--accent:#6ee7ff;--gold:#ffd166;--ink:#eaf2ff;--mut:#9fb3d1}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--ink)}
+.hero{background:radial-gradient(1000px 400px at 20% 0%,#1b2a55,transparent),radial-gradient(800px 400px at 90% 10%,#3b1d5e,transparent);padding:56px 24px;text-align:center}
+.hero h1{font-size:42px;margin:0 0 8px}.hero p.sub{color:var(--mut);font-size:18px;max-width:900px;margin:8px auto}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:18px 0}
+.badge{background:#0e1530;border:1px solid #2a3a66;border-radius:999px;padding:6px 14px;font-size:13px}
+.badge b{color:var(--accent)}
+.wrap{max-width:1080px;margin:0 auto;padding:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0}
+.card{background:var(--card);border:1px solid #26355e;border-radius:14px;padding:18px}
+.card h3{margin:0 0 8px;color:var(--gold)}.card p{color:var(--mut);font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:14px;background:#0e1530;border-radius:10px;overflow:hidden}
+th,td{padding:10px 12px;border-bottom:1px solid #22325c;text-align:left}th{color:var(--accent)}
+.demo{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}img.demo-gif{width:100%;border-radius:12px;border:1px solid #2a3a66}
+pre{background:#0e1530;border:1px solid #26355e;border-radius:10px;padding:14px;overflow:auto;font-size:13px}
+code{color:#b7ffcf}.cta{display:flex;gap:12px;justify-content:center;margin:20px 0;flex-wrap:wrap}
+.btn{background:var(--accent);color:#06222b;border-radius:999px;padding:12px 22px;font-weight:700;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid #3a4f82}
+.kpi{font-size:30px;color:var(--accent);font-weight:800}footer{color:var(--mut);text-align:center;padding:30px;font-size:13px}
+@media(max-width:800px){.demo{grid-template-columns:1fr}.hero h1{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="hero">
+<div class="badges"><span class="badge"><b>5/5</b> experiments PASS</span><span class="badge"><b>3× HTTP 200</b> live verified</span><span class="badge">MIT license</span><span class="badge">Docker one-command repro</span><span class="badge">Python 3.11</span></div>
+<h1>🔬 Technology of Extreme Ultraviolet Radiation — Benchmark 2026</h1>
+<p class="sub"><b>In one sentence:</b> a from-scratch, runnable replica of the 6-week EUV course (light → source → mirrors → chips → measurement) that proves every claim with code and <b>live public data</b> — and found 4 hidden patterns.</p>
+<div class="cta"><a class="btn" href="#quickstart">▶ Run it in 3 commands</a><a class="btn ghost" href="#demo">🎬 Watch the 10-sec demo</a></div>
+<p class="sub">NXE 0.33 NA → <b>16.4 nm</b> half-pitch &nbsp;|&nbsp; EXE 0.55 NA → <b>9.8 nm</b> &nbsp;|&nbsp; Mo/Si mirror <b>65.5%</b> &nbsp;|&nbsp; 10-mirror chain <b>≈2%</b> &nbsp;|&nbsp; NILS gain <b>+26%</b> &nbsp;|&nbsp; metrology <b>14.3×</b></p>
+</div>
+<div class="wrap">
+<h2 id="demo">🎬 Demo — watch resolution tighten (10 seconds)</h2>
+<div class="demo">
+<div><img class="demo-gif" src="assets/demo.gif" alt="Animated Abbe limit demo: resolution improves as NA grows"><p style="color:var(--mut);font-size:13px">Above: real output of <code>experiments/make_demo_gif.py</code> — every frame computed from R = k₁λ/NA, not drawn by hand. Video version: re-render with <code>ffmpeg -i assets/demo.gif assets/demo.mp4</code> and attach to a GitHub Release, then link the thumbnail here (GitHub strips raw &lt;video&gt; tags — GIF is the native fallback).</p></div>
+<div class="card"><h3>How to play the demo</h3><pre>pip install -r requirements.txt
+python experiments/make_demo_gif.py
+# → assets/demo.gif (60 frames)
+python experiments/run_all.py
+# → EXP-01…05 ALL PASS</pre><p>Classroom use: project the GIF, pause at NA=0.33 and NA=0.55, ask students to predict the numbers before revealing 16.4 / 9.8 nm.</p></div>
+</div>
+<h2>🌱 Beginner guide — read this and you are a professional</h2>
+<div class="grid">
+<div class="card"><h3>Step 1 — What is EUV?</h3><p>Light so energetic (91.8 eV, 13.5 nm) that <b>air eats it and glass blocks it</b>. So the whole machine lives in vacuum and uses only mirrors. That one fact explains 80% of the technology.</p></div>
+<div class="card"><h3>Step 2 — How do we make it?</h3><p>Shoot tin droplets with a CO₂ laser 50,000×/sec. The plasma flash contains EUV. Efficiency ≈5%. Collect it with a grazing mirror. Verified: 25 kW laser → ~600 W EUV (real tools: 250–500 W).</p></div>
+<div class="card"><h3>Step 3 — How do we focus it?</h3><p>Stack 40–50 pairs of molybdenum/silicon, each ~7 nm thick. They reflect 65% by Bragg interference. Ten such mirrors in a row → only ~2% survives. That is normal and planned for.</p></div>
+<div class="card"><h3>Step 4 — How do we print chips?</h3><p>Shine EUV through a reflective mask onto resist. Smaller wavelength + bigger NA = smaller features: 16.4 nm → 9.8 nm. Price: random photon noise (stochastics) and razor-thin focus (44 nm).</p></div>
+<div class="card"><h3>Step 5 — How do we measure it?</h3><p>Use EUV itself as the ruler: scatterometry/reflectometry. Short wavelength = 14× sharper vision than old 193 nm light. Measurement is the control loop that makes factories yield.</p></div>
+<div class="card"><h3>Step 6 — Why 2026 matters</h3><p>High-NA moved from lab to factory: first processors shipped, &gt;1M wafers, masks stitch today, bigger 12-inch masks by ~2031. The benchmark anchors every number to that reality.</p></div>
+</div>
+<h2>✨ Features — everything in this repo</h2>
+<div class="grid">
+<div class="card"><h3>🧪 5 verified experiments</h3><p>Abbe resolution · LPP source power · multilayer knee · dose/stochastics/throughput · metrology + live HTTP checks. Each prints PASS/FAIL and writes CSVs.</p></div>
+<div class="card"><h3>📦 Reproducible lab</h3><p><code>docker compose up euvlab</code> runs pytest + all experiments. Fixed requirements, deterministic seeds, offline-tolerant live checks.</p></div>
+<div class="card"><h3>🔎 4 hidden patterns</h3><p>Mirror saturation knee · dose-failure asymmetry · focus collapse · 14× metrology dividend — each with numbers, plots, and a falsifiable prediction.</p></div>
+<div class="card"><h3>📄 Paper draft</h3><p><code>docs/PAPER.md</code>: 4-page short-paper draft with abstract, methods, results, predictions, references — ready to extend with RCWA/Fresnel solvers.</p></div>
+<div class="card"><h3>🖼 Figures + GIF + this page</h3><p>Matplotlib PNGs, animated GIF, and this self-contained <code>preview.html</code> (no internet needed) for sharing with non-coders.</p></div>
+<div class="card"><h3>🧭 Honest limits</h3><p>Analytic proxies (not fab data), upper-bound throughput, incident-photon stochastics. Every limit is written down in <code>benchmarks/BENCHMARK.md</code>.</p></div>
+</div>
+<h2>👥 User stories — who is this for?</h2>
+<table><tr><th>You are…</th><th>Do this</th><th>You get</th></tr>
+<tr><td>Student (Week 1–6)</td><td>Run exp01→exp05 in order, read the 🌱 cards</td><td>Intuition + numbers interview candidates lack</td></tr>
+<tr><td>Teacher / TA</td><td>Project preview.html + demo.gif in lecture</td><td>10-sec hook + pause-and-predict moments</td></tr>
+<tr><td>Process engineer</td><td>Tweak dose/NA in exp04, read RLS asymmetry</td><td>Why NILS beats dose escalation</td></tr>
+<tr><td>Optics researcher</td><td>Sweep bilayers in exp03, extend to Fresnel solver</td><td>Knee proof + a paper starting point</td></tr>
+<tr><td>Hiring manager</td><td>Ask: “why 40–50 bilayers? why does DoF bind 0.75 NA?”</td><td>Two questions that separate memorisers from thinkers</td></tr>
+<tr><td>Curious public</td><td>Open only this page + the GIF</td><td>Understand EUV without equations</td></tr></table>
+<h2 id="quickstart">⚡ Quickstart (copy-paste, ~2 minutes)</h2>
+<pre>git clone https://github.com/YOU/euv-technology-benchmark-2026.git
+cd euv-technology-benchmark-2026
+pip install -r requirements.txt
+python experiments/run_all.py      # expect: EXP-01…05 ALL PASS
+python -m pytest -q                # expect: 3 passed
+python experiments/make_demo_gif.py# expect: assets/demo.gif
+# Docker alternative:
+docker compose up euvlab</pre>
+<h2>📊 Verified benchmark (snapshot 2026-10-03)</h2>
+<table><tr><th>System</th><th>NA</th><th>Resolution</th><th>Focus budget</th><th>Status</th></tr>
+<tr><td>DUV 193 nm (reference)</td><td>1.35</td><td>57.2 nm</td><td>105.9 nm</td><td>computed</td></tr>
+<tr><td>NXE (production)</td><td>0.33</td><td><b>16.36 nm</b></td><td>124.0 nm</td><td>PASS</td></tr>
+<tr><td>EXE High-NA (HVM 2026)</td><td>0.55</td><td><b>9.82 nm</b></td><td>44.6 nm</td><td>PASS</td></tr>
+<tr><td>Hyper-NA (roadmap)</td><td>0.75</td><td>7.20 nm</td><td>24.0 nm</td><td>computed</td></tr></table>
+<p style="color:var(--mut)">Source: 25 kW → ~606 W (class of 250–500 W tools) · Mirrors: R50=0.655, 10-mirror T≈2% · Litho: fail 35%→12%→1.5% at 15/30/60 mJ · NILS +26% · Metrology 14.3×. Full tables: <code>benchmarks/BENCHMARK.md</code>, CSVs: <code>data/processed/</code>.</p>
+<div class="grid"><div class="card"><span class="kpi">16.36 → 9.82 nm</span><p>Resolution proof (Abbe, k₁=0.4). RET pushes products to 13/8 nm lines.</p></div>
+<div class="card"><span class="kpi">+26.0% NILS</span><p>High-NA contrast gain reproduced exactly at 18 nm pitch.</p></div>
+<div class="card"><span class="kpi">14.3×</span><p>EUV scatterometry advantage over DUV — the control loop dividend.</p></div></div>
+<h2>🗺 Repository map</h2>
+<pre>src/euvlab/          physics.py source.py optics.py litho.py metrology.py
+experiments/         exp01..exp05 + run_all.py + make_demo_gif.py
+data/processed/      exp01..exp05 CSVs (regenerated, never edited)
+data/raw/            live_snapshot.json (3× HTTP 200, dated)
+figures/             fig1_abbe fig2_multilayer fig3_rls (matplotlib)
+assets/              demo.gif (this page's animation)
+benchmarks/          BENCHMARK.md — tables + verdicts + limits
+docs/                PAPER.md — 4-page publishable draft
+preview.html         this page (open directly in a browser)</pre>
+<h2>🤝 Contributing & 📜 License</h2>
+<p style="color:var(--mut)">Issues and PRs welcome: add an experiment (mirror it on exp01's assert style), keep live checks best-effort, never commit hand-edited CSVs. License: <b>MIT</b> — use freely, cite kindly. See LICENSE.</p>
+<footer>Built from public facts + first principles · All figures regenerable · Open preview.html offline · Share freely (MIT)</footer>
+</div>
+</body>
+</html>

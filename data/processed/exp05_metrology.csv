@@ -1,0 +1,5 @@
+metric,value
+sens_euv_32nm,14.2963
+sens_duv_32nm,1.0
+inv_err_20ang,0.5
+inv_err_80ang,0.25
